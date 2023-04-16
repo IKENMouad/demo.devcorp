@@ -39,4 +39,5 @@ export interface Repositoy {
     updated_at: string,
     description: string,
     url:string ,
+    html_url:string,
 } 

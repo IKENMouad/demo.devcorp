@@ -17,6 +17,8 @@ export class ListUsersComponent implements OnInit {
   incomplete_results = false;
   users: Geek[] = [];
 
+  loading = false
+
   @Input() followers: Array<Geek> = [];
   @Input() isFollowers: boolean = false;
 
@@ -34,9 +36,11 @@ export class ListUsersComponent implements OnInit {
       (response: any) => {
         this.users = [...this.users, ...response.items]
         // this.totalItems = response.total_count;
-        this.incomplete_results = response.incomplete_results
+        this.incomplete_results = response.incomplete_results;
       },
-      error => console.log(error))
+      error => console.log(error),
+      () => this.loading = false
+    )
   }
 
   fetchUser(login: string) {
@@ -44,6 +48,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   loadMore() {
+    this.loading = true
     this.fetchUsers(this.searchedValue, this.page + 1, this.perPage);
   }
 

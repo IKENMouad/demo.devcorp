@@ -1,19 +1,16 @@
 <div class="repos-container">
     <div class="repos-search-wrapper mt-5 d-flex justify-content-center ">
         <div class="form-group">
-            <input type="text" class="form-control" name="search" placeholder="Search for Geek">
+            <input type="text" class="form-control" name="search" placeholder="Search for Repos" [(ngModel)]="searchRepos" (change)="searchReposHandler()" >
         </div>
         <div class="repos-filter-wrapper ">
             <div class="btn-group">
                 <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
-                    Languaes
+                    {{selectedLanguage ? selectedLanguage : 'Languages'}}
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
+                    <a class="dropdown-item" (click)="filterRepos({filterValue:language, filterType: 'language'})"
+                        *ngFor="let language of languages"> {{ language }} </a>
                 </div>
             </div>
             <div class="btn-group">
@@ -21,17 +18,14 @@
                     Sort
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
+                    <a class="dropdown-item" (click)="filterRepos({filterValue:filter.value, filterType:'filter' })"
+                        *ngFor="let filter of filters"> {{ filter.label }} </a>
                 </div>
             </div>
         </div>
     </div>
     <div class="repo-list">
-        <div class="pt-3 repo-item-container " *ngFor="let repo of repositories">
+        <div class="pt-3 repo-item-container " *ngFor="let repo of filtredRepos">
             <p class="mb-0 cursor-pointer" style="color: #2f81f7; " data-toggle="modal"
                 data-target="#exampleModalCenter" role="button" (click)="getRepoDetails(repo)"> {{ repo.name }} <span><i
                         class="fa fa-star "></i>
