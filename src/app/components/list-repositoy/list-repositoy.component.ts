@@ -63,13 +63,12 @@ export class ListRepositoyComponent implements OnInit, OnChanges {
     const { filterType, filterValue = '' } = filter;
     if (!filterType) return;
 
-
     if (filterType === 'language') {
       this.selectedLanguage = filterValue;
-      this.filtredRepos = this.filtredRepos.filter(el => el.language?.toLowerCase() == filterValue?.toLowerCase())
+      this.filtredRepos = this.repositories.filter(el => el.language?.toLowerCase() == filterValue?.toLowerCase())
     } else {
       const _selectedFilter = this.filters.find(el => el.value === filterValue);
-      this.selectedFilter = _selectedFilter;
+      this.selectedFilter = _selectedFilter.label;
       if (_selectedFilter.value === 'updated_at') {
         this.filtredRepos = this.filtredRepos.sort((a: any, b: any) => (new Date(a['updated_at']) as any) - (new Date(b['updated_at']) as any));
       } else {
@@ -80,7 +79,7 @@ export class ListRepositoyComponent implements OnInit, OnChanges {
   }
 
   searchReposHandler() {
-    this.filtredRepos = this.filtredRepos.filter(el => el.name?.toLowerCase().includes(this.searchRepos?.toLowerCase()))
+    this.filtredRepos = this.repositories.filter(el => el.name?.toLowerCase().includes(this.searchRepos?.toLowerCase()))
   }
 
 }

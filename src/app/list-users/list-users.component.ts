@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geek } from '../models/geek';
 import { UsersService } from '../services/users.service';
@@ -35,7 +35,6 @@ export class ListUsersComponent implements OnInit {
     this.usersService.getUsers(searchedValue, page, perPage).subscribe(
       (response: any) => {
         this.users = [...this.users, ...response.items]
-        // this.totalItems = response.total_count;
         this.incomplete_results = response.incomplete_results;
       },
       error => console.log(error),
