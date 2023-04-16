@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { Geek } from '../models/geek';
-import { FollowerService } from '../services/follower.service';
-import { RepositoryService } from '../services/repository.service';
-import { UsersService } from '../services/users.service';
+import { Geek } from '../../models/geek';
+import { FollowerService } from '../../services/follower.service';
+import { RepositoryService } from '../../services/repository.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-user-profile',

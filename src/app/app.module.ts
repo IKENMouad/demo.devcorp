@@ -4,8 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListUsersComponent } from './list-users/list-users.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ListRepositoyComponent } from './components/list-repositoy/list-repositoy.component';
 import { FormsModule } from '@angular/forms';
 
