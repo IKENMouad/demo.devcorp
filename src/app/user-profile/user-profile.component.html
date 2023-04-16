@@ -1,1 +1,29 @@
-{{ user | json }}
+<div class="row">
+
+    <div class="col-md-3 offset-1 left-bar">
+        <img [src]="user.avatar_url" alt="avatar_url" width="auto" height="300px">
+        <div class="">
+            <h3 class="display-5"> {{ user.name }} </h3>
+        </div>
+        <div class="text-center">
+            <nav class="nav">
+                <span (click)="onSwitchTab('repositories')" class="text-sm-center nav-link cursor-pointer"
+                    [ngClass]="{'active-tab':  activeTab === 'repositories' }">Repositories</span>
+                <span (click)="onSwitchTab('followers')" class="text-sm-center nav-link cursor-pointer"
+                    [ngClass]="{'active-tab':  activeTab === 'followers' }">Followers</span>
+            </nav>
+        </div>
+    </div>
+
+    <div class="col-md-8 right-side">
+        <ng-container *ngIf="activeTab === 'followers';else repositoryTemplate">
+            <app-list-users [isFollowers]="true" [followers]="followers" />
+        </ng-container>
+
+        <ng-template #repositoryTemplate>
+            <app-list-repositoy [repositories]="repositories" />
+        </ng-template>
+
+    </div>
+
+</div>

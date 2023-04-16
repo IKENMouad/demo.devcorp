@@ -12,8 +12,9 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient,) { }
 
-  public getUsers(): Observable<Array<Geek>> {
-    return this.httpClient.get<Array<Geek>>(this.baseUrl);
+  public getUsers(name = '', page = 0, perPage = 30) {
+    const api = `https://api.github.com/search/users?q=${name} in:name type:user&page=${page}&per_page=${perPage}`
+    return this.httpClient.get(api);
   }
   public getUser(login: string): Observable<Geek> {
     return this.httpClient.get<Geek>(`${this.baseUrl}/${login}`);

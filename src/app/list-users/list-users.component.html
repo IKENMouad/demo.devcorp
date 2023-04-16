@@ -1,7 +1,28 @@
-<div class="row">
-    <div class="col-md-3" *ngFor="let user of users" >
-        
-        <p class="text-muted" (click)="fetchUser(user.login)" > {{user.login}} </p>
+<div class="container">
 
+    <div class="github-search-wrapper mt-5 d-flex align-items-center justify-content-center" *ngIf="!isFollowers" >
+        <div class="form-group">
+            <input type="text" [(ngModel)]="searchedValue" class="form-control" name="search"
+                (change)="searchForUsers()" placeholder="Search for Geek">
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3" *ngFor="let user of users">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header cursor-pointer d-flex align-items-center" (click)="fetchUser(user.login)"
+                    style="color: #2f81f7; gap:7px; ">
+                    <img class="user-avatar" [src]="user.avatar_url" alt="avatar_url" width="auto" height="40px">
+                    <p class="m-0"> {{user.login}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="scroll-container text-center" *ngIf="!isFollowers" >
+        <button [disabled]="!incomplete_results" type="button" class="btn btn-lg btn-primary" (click)="loadMore()"> Load
+            more </button>
+    </div>
+
 </div>

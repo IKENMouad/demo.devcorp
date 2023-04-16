@@ -1,0 +1,68 @@
+<div class="repos-container">
+    <div class="repos-search-wrapper mt-5 d-flex justify-content-center ">
+        <div class="form-group">
+            <input type="text" class="form-control" name="search" placeholder="Search for Geek">
+        </div>
+        <div class="repos-filter-wrapper ">
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                    Languaes
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                    Sort
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="repo-list">
+        <div class="pt-3 repo-item-container " *ngFor="let repo of repositories">
+            <p class="mb-0 cursor-pointer" style="color: #2f81f7; " data-toggle="modal"
+                data-target="#exampleModalCenter" role="button" (click)="getRepoDetails(repo)"> {{ repo.name }} <span><i
+                        class="fa fa-star "></i>
+                    {{ repo.stargazers_count }}</span> </p>
+            <small *ngIf="repo.description" class="ml-2"> {{ repo.description }} </small>
+            <small class="ml-2"> {{ repo.language }} updated on {{ repo.updated_at | date }} </small>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="selectedRepo" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle"> {{ selectedRepo.name }} </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                number of commits : {{ commits.length }} <br>
+                number of pulls : {{ pulls.length }}<br>
+                number of issues : {{ issues.length }}
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
